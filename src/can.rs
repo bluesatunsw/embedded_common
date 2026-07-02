@@ -148,7 +148,7 @@ where
 
     fn transmit(&mut self, frame: Frame, clock: &mut CL) -> nb::Result<Option<Frame>, Self::Error> {
         // Should always work since we just checked for room
-        self.hw_can.transmit_preserve(
+        match self.hw_can.transmit_preserve(
             TxFrameHeader {
                 // SAFETY: Equivlent invarients
                 len: unsafe { frame.data().len().try_into().unwrap_unchecked() },
@@ -172,7 +172,11 @@ where
                     unsafe { from_raw_parts(bf.as_ptr() as *const u8, bf.len() * 4) },
                 )
             },
-        )
+        ) {
+            // TODO: use the mailbox for something
+            Ok((_, maybe_frame)) => Ok(maybe_frame),
+            Err(e) => Err(e),
+        }
     }
 
     fn flush(&mut self, _clock: &mut CL) -> nb::Result<(), Self::Error> {

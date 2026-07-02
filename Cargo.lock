@@ -265,8 +265,8 @@ dependencies = [
 
 [[package]]
 name = "fdcan"
-version = "0.2.1"
-source = "git+https://github.com/umi-eng/fdcan.git?branch=transceiver-delay-compensation#d5d9dd0ada8eef4e73fca605d511452b0a5436d7"
+version = "0.4.0"
+source = "git+https://github.com/bluesatunsw/fdcan#11ecab5025a5be4a39a828dc6a7d334fc6a8f8da"
 dependencies = [
  "bitflags",
  "nb 1.1.0",
@@ -470,8 +470,8 @@ dependencies = [
 
 [[package]]
 name = "stm32g4xx-hal"
-version = "0.0.2"
-source = "git+https://github.com/bluesatunsw/stm32g4xx-hal?branch=qspi#af5da517e001ad81c268d16756d1cbeaf03f48e8"
+version = "0.0.3"
+source = "git+https://github.com/bluesatunsw/stm32g4xx-hal#1d8ad1271568095daf8398c593405ca0fc6e749b"
 dependencies = [
  "cast",
  "cortex-m",
