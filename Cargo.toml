@@ -16,14 +16,14 @@ fugit = "0.3.9"
 stm32g4 = { version = "0.16.0", features = ["rt", "stm32g474"] }
 # stm32g4xx-hal patched in below; original is https://github.com/stm32-rs/stm32g4xx-hal
 stm32g4xx-hal = {
-    version = "0.0.2",
+    version = "0.0.3",
     git = "https://github.com/bluesatunsw/stm32g4xx-hal",
     features = ["stm32g474", "rt", "can"]
 }
-# Need delay compensation, see: github.com/stm32-rs/fdcan/pull/57
+# This is, again, a Bluesat special. We need delay compensation and Evan's fixes
 fdcan = {
-    git = "https://github.com/umi-eng/fdcan.git",
-    branch = "transceiver-delay-compensation"
+    version = "0.4.0",
+    git = "https://github.com/bluesatunsw/fdcan",
 }
 nb = "1.1.0"
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }

@@ -208,6 +208,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "460fbee9c2c2f33933d720630a6a0bac33ba7053db5344fac858d4b8952d77d5"
 
 [[package]]
+name = "embedded-common"
+version = "0.0.1"
+dependencies = [
+ "bitfield-struct",
+ "canadensis",
+ "canadensis_can",
+ "cortex-m",
+ "embedded-io",
+ "fdcan",
+ "fugit",
+ "nb 1.1.0",
+ "stm32g4",
+ "stm32g4xx-hal",
+]
+
+[[package]]
 name = "embedded-dma"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -237,22 +253,6 @@ name = "embedded-io"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "edd0f118536f44f5ccd48bcb8b111bdc3de888b58c74639dfb034a357d0f206d"
-
-[[package]]
-name = "embedded_common"
-version = "0.0.1"
-dependencies = [
- "bitfield-struct",
- "canadensis",
- "canadensis_can",
- "cortex-m",
- "embedded-io",
- "fdcan",
- "fugit",
- "nb 1.1.0",
- "stm32g4",
- "stm32g4xx-hal",
-]
 
 [[package]]
 name = "fallible_collections"
@@ -471,7 +471,7 @@ dependencies = [
 [[package]]
 name = "stm32g4xx-hal"
 version = "0.0.2"
-source = "git+https://github.com/bluesatunsw/stm32g4xx-hal?branch=qspi#5fe2691822e39d2db9615e260d11dc88168b07b4"
+source = "git+https://github.com/bluesatunsw/stm32g4xx-hal?branch=qspi#af5da517e001ad81c268d16756d1cbeaf03f48e8"
 dependencies = [
  "cast",
  "cortex-m",
