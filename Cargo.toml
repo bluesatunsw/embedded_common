@@ -8,7 +8,6 @@ version = "0.1.0"
 [dependencies]
 embedded-io = "0.6.1"
 fugit = "0.3.9"
-# stm32g4 = { version = "0.16.0", features = ["rt", "stm32g474"] }
 # stm32g4xx-hal patched in below; original is https://github.com/stm32-rs/stm32g4xx-hal
 stm32g4xx-hal = {
     version = "0.0.3",
@@ -19,11 +18,10 @@ stm32g4xx-hal = {
 nb = "1.1.0"
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
 bitfield-struct = { version = "0.12.1", optional = true }
-canadensis_core = { version = "0.5.0" }
 # CAN-FD
-canadensis = { version = "0.5.0", optional = true }
+canadensis = { version = "0.6.1", optional = true }
 canadensis_can = {
-    version = "0.5.1",
+    version = "0.6.0",
     features = ["can-fd"],
     optional = true
 }
@@ -38,5 +36,5 @@ fdcan = {
 can-fd = ["dep:canadensis_can", "dep:fdcan", "stm32g4xx-hal/can", "dep:canadensis"]
 stm32g431 = ["stm32g4xx-hal/stm32g431"]
 stm32g474 = ["stm32g4xx-hal/stm32g474"]
-dprintln-enabled = []
 stepper-board = ["bitfield-struct"]
+dprintln = []

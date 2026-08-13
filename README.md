@@ -12,7 +12,7 @@ Specify the chip type as a feature. Options: `stm32g431`, `stm32g474`.
 - `clock.rs`: microsecond clock driver (consumes TIM2) for canadensis (Cyphal)
 - `debug.rs`: ITM debug interface support
     - Enable with feature `dprintln-enabled`
-- `stepper_bus.rs`, `tmc_registers.rs`: support for TMC5160 interface over SPI
+- `tmc_registers.rs`: support for TMC5160 interface
     - Enable with feature `stepper-board`
 
 `tools/` also has some OpenOCD config files, a GDB script and an SVD file for the G474.

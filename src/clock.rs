@@ -1,4 +1,4 @@
-use canadensis_core::time::{Clock, Microseconds32};
+use canadensis::core::time::{Clock, Microseconds32};
 
 use fugit::{MicrosDurationU32, RateExtU32};
 use stm32g4xx_hal::{

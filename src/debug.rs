@@ -1,4 +1,4 @@
-use core::{mem::transmute_copy, ptr::copy_nonoverlapping, slice};
+use core::{ptr::copy_nonoverlapping, slice};
 
 use cortex_m::itm;
 use stm32g4xx_hal::pac::{DBGMCU, DCB, DWT, ITM};
@@ -20,7 +20,7 @@ pub unsafe fn setup_itm(dcb: &mut DCB, dwt: &mut DWT, dbgmcu: &mut DBGMCU, itm: 
 }
 
 pub fn itm_send_raw<T: Sized>(chan: usize, value: &T) {
-    if cfg!(not(feature = "dprintln-enabled")) {
+    if cfg!(not(feature = "dprintln")) {
         return;
     }
     let stim = unsafe { &mut stm32g4xx_hal::pac::CorePeripherals::steal().ITM.stim[chan] };
@@ -30,7 +30,7 @@ pub fn itm_send_raw<T: Sized>(chan: usize, value: &T) {
 }
 
 pub fn itm_hexdump(chan: usize, bytes: &[u8]) {
-    if cfg!(not(feature = "dprintln-enabled")) {
+    if cfg!(not(feature = "dprintln")) {
         return;
     }
 
@@ -39,7 +39,7 @@ pub fn itm_hexdump(chan: usize, bytes: &[u8]) {
     itm::write_all(stim, bytes);
 }
 
-#[cfg(feature = "dprintln-enabled")]
+#[cfg(feature = "dprintln")]
 #[macro_export]
 macro_rules! dprint {
     ($channel:literal, $s:expr) => {
@@ -52,14 +52,14 @@ macro_rules! dprint {
     };
 }
 
-#[cfg(not(feature = "dprintln-enabled"))]
+#[cfg(not(feature = "dprintln"))]
 #[macro_export]
 macro_rules! dprint {
     ($channel:literal, $s:expr) => {};
     ($channel:literal, $($arg:tt)*) => {};
 }
 
-#[cfg(feature = "dprintln-enabled")]
+#[cfg(feature = "dprintln")]
 #[macro_export]
 macro_rules! dprintln {
     ($channel:literal) => {
@@ -76,7 +76,7 @@ macro_rules! dprintln {
     };
 }
 
-#[cfg(not(feature = "dprintln-enabled"))]
+#[cfg(not(feature = "dprintln"))]
 #[macro_export]
 macro_rules! dprintln {
     ($channel:literal) => {};
