@@ -1,9 +1,10 @@
 #![no_std]
 
 pub mod argb;
-pub mod clock;
 pub mod debug;
 
+#[cfg(feature = "can-fd")]
+pub mod clock;
 #[cfg(feature = "can-fd")]
 pub mod can;
 #[cfg(feature = "stepper-board")]
