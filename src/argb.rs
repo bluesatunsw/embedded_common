@@ -48,11 +48,13 @@ impl Colour {
     }
 
     pub const BLACK: Self = Self { r: 0, g: 0, b: 0 };
-    pub const AMBER: Self = Self {
-        r: 255,
-        g: 50,
-        b: 0,
-    };
+    pub const RED: Self = Self { r: 255, g: 0, b: 0 };
+    pub const YELLOW: Self = Self { r: 255, g: 255, b: 0 };
+    pub const GREEN: Self = Self { r: 0, g: 255, b: 0 };
+    pub const BLUE: Self = Self { r: 0, g: 0, b: 255 };
+    pub const MAGENTA: Self = Self { r: 255, g: 0, b: 255 };
+    pub const CYAN: Self = Self { r: 0, g: 255, b: 255 };
+    pub const AMBER: Self = Self { r: 255, g: 50, b: 0 };
 }
 
 pub struct Controller<UART, PIN: TxPin<UART>>
@@ -97,5 +99,11 @@ where
                     .as_flattened(),
             )
             .unwrap();
+    }
+
+    /// Will only change the brightness of the display on subsequent calls to display(). Will not
+    /// change the brightness of the LEDs currently active.
+    pub fn set_brightness(&mut self, brightness: u8) {
+        self.brightness = brightness;
     }
 }

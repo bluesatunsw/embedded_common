@@ -1,7 +1,7 @@
 use core::{mem::transmute_copy, ptr::copy_nonoverlapping, slice};
 
 use cortex_m::itm;
-use stm32g4::stm32g474::{DBGMCU, DCB, DWT, ITM};
+use stm32g4xx_hal::pac::{DBGMCU, DCB, DWT, ITM};
 
 pub unsafe fn setup_itm(dcb: &mut DCB, dwt: &mut DWT, dbgmcu: &mut DBGMCU, itm: &mut ITM) {
     dcb.enable_trace();
@@ -23,7 +23,7 @@ pub fn itm_send_raw<T: Sized>(chan: usize, value: &T) {
     if cfg!(not(feature = "dprintln-enabled")) {
         return;
     }
-    let stim = unsafe { &mut stm32g4::stm32g474::CorePeripherals::steal().ITM.stim[chan] };
+    let stim = unsafe { &mut stm32g4xx_hal::pac::CorePeripherals::steal().ITM.stim[chan] };
     itm::write_all(stim, unsafe {
         slice::from_raw_parts((value as *const T) as *const u8, size_of::<T>())
     });
@@ -34,7 +34,7 @@ pub fn itm_hexdump(chan: usize, bytes: &[u8]) {
         return;
     }
 
-    let stim = unsafe { &mut stm32g4::stm32g474::CorePeripherals::steal().ITM.stim[chan] };
+    let stim = unsafe { &mut stm32g4xx_hal::pac::CorePeripherals::steal().ITM.stim[chan] };
     stim.write_u32(bytes.len() as u32);
     itm::write_all(stim, bytes);
 }

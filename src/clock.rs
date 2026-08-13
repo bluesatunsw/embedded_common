@@ -1,8 +1,12 @@
-use canadensis::core::time::{Clock, Microseconds32};
-use fugit::{MicrosDurationU32, RateExtU32};
-use stm32g4::stm32g474::{RCC, TIM2};
-use stm32g4xx_hal::rcc::{Clocks, PLLClocks, Rcc, RccExt};
+use canadensis_core::time::{Clock, Microseconds32};
 
+use fugit::{MicrosDurationU32, RateExtU32};
+use stm32g4xx_hal::{
+    rcc::{Clocks, PLLClocks, Rcc, RccExt},
+    pac::{RCC, TIM2},
+};
+
+/// For the bootloader. Here be dragons
 pub unsafe fn conjure_rcc() -> Rcc {
     // SAFETY: this is the reason why this function is unsafe
     let mut rcc = unsafe { RCC::steal() }.constrain();

@@ -2,8 +2,13 @@
 
 For STM32G4 microcontrollers.
 
+Your project must use Bluesat's `stm32g4xx_hal` for this crate to work.
+
+Specify the chip type as a feature. Options: `stm32g431`, `stm32g474`.
+
 - `argb.rs`: driver for WS2812 ARGB LEDs
 - `can.rs`: CAN FD driver for canadensis (Cyphal)
+    - Enable with feature `can`
 - `clock.rs`: microsecond clock driver (consumes TIM2) for canadensis (Cyphal)
 - `debug.rs`: ITM debug interface support
     - Enable with feature `dprintln-enabled`
