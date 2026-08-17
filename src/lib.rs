@@ -1,6 +1,7 @@
 #![no_std]
 
 pub mod argb;
+pub mod uuid;
 
 #[cfg(feature = "dprintln")]
 pub mod debug;

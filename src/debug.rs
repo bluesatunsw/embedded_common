@@ -1,4 +1,4 @@
-use core::{ptr::copy_nonoverlapping, slice};
+use core::slice;
 
 use cortex_m::itm;
 use stm32g4xx_hal::pac::{DBGMCU, DCB, DWT, ITM};
@@ -82,16 +82,4 @@ macro_rules! dprintln {
     ($channel:literal) => {};
     ($channel:literal, $fmt:expr) => {};
     ($channel:literal, $fmt:expr, $($arg:tt)*) => {};
-}
-
-pub fn uuid() -> [u8; 16] {
-    const UID_ADDRESS: u32 = 0x1FFF_7590;
-
-    let mut uuid: [u8; 16] = [0x4C; 16];
-    // SAFETY: 😊
-    unsafe {
-        copy_nonoverlapping(UID_ADDRESS as *const u8, uuid.as_mut_ptr(), 12);
-    }
-
-    uuid
 }
